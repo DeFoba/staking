@@ -1,0 +1,101 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family: "Switzer-Regular",sans-serif !important;
+}
+
+#maincontainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    padding: 4%;
+    border: solid 2px #fff;
+    width: 30%;
+}
+
+#title_side {
+    text-align: center;
+    font-size: 300%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.color_text {
+    color: #C380FF;
+}
+
+#wallet {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 15%;
+}
+
+#connectWallet {
+    border: solid 1px transparent;
+    padding: 5% 15%;
+    border-radius: 10px;
+    background-color: #C380FF;
+    color: white;
+    font-size: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: .2s;
+    cursor: pointer;
+}
+
+#connectWallet:hover {
+    background-color: transparent;
+    border: solid 1px #fff;
+}
+
+#stake {
+    border: solid 1px #fff;
+    border-radius: 10px;
+    padding: 4.5%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* width: 150%; */
+}
+
+.first_subtitle {
+    margin: 0;
+    position: absolute;
+    left: 5%;
+    top: 0;
+    transform: translateY(-55%);
+    background-color: #000;
+    padding: 0 2%;
+}
+
+.stake_input {
+    all: unset;
+    background: transparent;
+    border: 0;
+    width: 50%;
+    color: #fff;
+    margin: 0 1%;
+}
+
+.stake_input_btn {
+    border: solid 1px transparent;
+    border-radius: 10px;
+    background-color: #C380FF;
+    color: white;
+    font-size: 80%;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: .2s;
+    cursor: pointer;
+    margin: 0 1%;
+    padding: 2% 3%;
+    font-weight: bold;
+    text-wrap: nowrap;
+}
