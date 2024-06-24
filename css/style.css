@@ -120,7 +120,7 @@ body {
     margin: 0 1%;
 }
 
-.stake_input_btn {
+.stake_input_btn, .stake-item > button {
     border: solid 1px transparent;
     border-radius: 2em;
     background-color: #C380FF;
@@ -133,6 +133,10 @@ body {
     padding: 2% 3%;
     /* font-weight: bold; */
     text-wrap: nowrap;
+}
+
+.stake-item > button {
+    font-size: 0.8em;
 }
 
 #container_logo {

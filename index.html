@@ -82,6 +82,39 @@
           <h2>Your Stakes</h2>
           <div id="stakeList">
 
+            <div class="stake-item">
+              <p>Amount Staked: 10.0 $ELLA</p>
+              <p>Amount Reward: 0.000046448760790866 $ETH (Total Reward: 0.000140350877192982 $ETH)</p>
+              <p>Lock Period: 7 days</p>
+              <p>Reward Rate: 8%</p>
+              <p>Start Time: 22.06.2024, 13:53:24</p>
+              <p>End Time: 29.06.2024, 13:53:24</p>
+              <button onclick="claimElla(0)">Claim $ELLA</button>
+              <button onclick="claimEth(0)">Claim $ETH</button>
+            </div>
+
+            <div class="stake-item">
+              <p>Amount Staked: 10.0 $ELLA</p>
+              <p>Amount Reward: 0.000046448760790866 $ETH (Total Reward: 0.000140350877192982 $ETH)</p>
+              <p>Lock Period: 7 days</p>
+              <p>Reward Rate: 8%</p>
+              <p>Start Time: 22.06.2024, 13:53:24</p>
+              <p>End Time: 29.06.2024, 13:53:24</p>
+              <button onclick="claimElla(0)">Claim $ELLA</button>
+              <button onclick="claimEth(0)">Claim $ETH</button>
+            </div>
+
+            <div class="stake-item">
+              <p>Amount Staked: 10.0 $ELLA</p>
+              <p>Amount Reward: 0.000046448760790866 $ETH (Total Reward: 0.000140350877192982 $ETH)</p>
+              <p>Lock Period: 7 days</p>
+              <p>Reward Rate: 8%</p>
+              <p>Start Time: 22.06.2024, 13:53:24</p>
+              <p>End Time: 29.06.2024, 13:53:24</p>
+              <button onclick="claimElla(0)">Claim $ELLA</button>
+              <button onclick="claimEth(0)">Claim $ETH</button>
+            </div>
+
           </div>
         </div>
 
@@ -269,15 +302,26 @@
         console.log('Stakes fetched:', stakes);
         const stakeList = document.getElementById('stakeList');
         stakeList.innerHTML = '';
-        stakes.forEach(stake => {
-          const rewardRate = getRewardRate(stake.amount, stake.lockPeriod / (24 * 60 * 60));
+        stakes.forEach((stake, index) => {
+          const amount = ethers.BigNumber.from(stake.amount);
+          const startTime = ethers.BigNumber.from(stake.startTime);
+          const lockPeriod = ethers.BigNumber.from(stake.lockPeriod);
+          const rewardRate = getRewardRate(amount, lockPeriod.div(24 * 60 * 60).toNumber());
+          const totalReward = calculateReward(amount, rewardRate).div(5700);
+          const currentTime = Math.floor(Date.now() / 1000);
+          const timeElapsed = Math.min(currentTime - startTime.toNumber(), lockPeriod.toNumber());
+          const amountReward = calculateReward(amount, rewardRate).mul(timeElapsed).div(lockPeriod).div(5700);
           const stakeItem = document.createElement('div');
           stakeItem.className = 'stake-item';
           stakeItem.innerHTML = `
-            <p>Amount: ${ethers.utils.formatUnits(stake.amount, 18)} tokens</p>
-            <p>Lock Period: ${stake.lockPeriod / (24 * 60 * 60)} days</p>
+            <p>Amount Staked: ${ethers.utils.formatUnits(amount, 18)} $ELLA</p>
+            <p>Amount Reward: ${ethers.utils.formatUnits(amountReward, 18)} $ETH (Total Reward: ${ethers.utils.formatUnits(totalReward, 18)} $ETH)</p>
+            <p>Lock Period: ${lockPeriod.div(24 * 60 * 60).toNumber()} days</p>
             <p>Reward Rate: ${rewardRate}%</p>
-            <p>Start Time: ${new Date(stake.startTime * 1000).toLocaleString()}</p>
+            <p>Start Time: ${new Date(startTime.toNumber() * 1000).toLocaleString()}</p>
+            <p>End Time: ${new Date((startTime.toNumber() + lockPeriod.toNumber()) * 1000).toLocaleString()}</p>
+            <button onclick="claimElla(${index})">Claim $ELLA</button>
+            <button onclick="claimEth(${index})">Claim $ETH</button>
           `;
           stakeList.appendChild(stakeItem);
         });
@@ -286,9 +330,13 @@
       }
     };
 
+    const calculateReward = (amount, rewardRate) => {
+      return amount.mul(rewardRate).div(100);
+    };
+
     const getRewardRate = (amount, lockPeriodInDays) => {
       const TOKENS_PER_DOLLAR = 5700;
-      const amountInDollars = amount / TOKENS_PER_DOLLAR;
+      const amountInDollars = amount.div(TOKENS_PER_DOLLAR).toNumber();
       if (lockPeriodInDays == 7) {
         if (amountInDollars < 500) return 5;
         if (amountInDollars < 1000) return 6;
@@ -311,6 +359,16 @@
         return 44;
       }
       return 0;
+    };
+
+    const claimElla = async (stakeIndex) => {
+      alert(`Staking is still in progress...
+Please wait until the end of the period!`);
+    };
+
+    const claimEth = async (stakeIndex) => {
+      alert(`Staking is still in progress...
+Please wait until the end of the period!`);
     };
 
     document.getElementById('connectWallet').onclick = async () => {
@@ -371,5 +429,6 @@
       }
     };
   </script>
+  <script src="script/main.js"></script>
 </body>
 </html>
