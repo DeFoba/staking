@@ -34,7 +34,7 @@ body {
 #maincontainer {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 53%;
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
@@ -494,3 +494,8 @@ body {
 /* .stake-item {
     background: ;
 } */
+
+#stakeList {
+    overflow-y: scroll;
+    max-height: 25vh;
+}
