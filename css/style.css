@@ -217,6 +217,8 @@ body {
     height: 100%;
     position: absolute;
     overflow: hidden;
+    left: 0;
+    top: 0;
 }
 
 @keyframes blurs-3a114d1d{
@@ -290,6 +292,7 @@ body {
 @media (max-width: 989px) {
     #maincontainer {
         width: 65%;
+        margin-top: 18%;
     }
 }
 
@@ -438,6 +441,7 @@ body {
 @media (max-width: 421px) {
     #maincontainer {
         width: 75%;
+        margin-top: 28%;
     }
 
     #title_side {
