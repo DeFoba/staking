@@ -401,13 +401,19 @@ body {
     }
 }
 
+@media (max-width: 535px) {
+    #title_side {
+        font-size: 150%;
+    }
+}
+
 @media (max-width: 421px) {
     #maincontainer {
         width: 75%;
     }
 
     #title_side {
-        font-size: 150%;
+        font-size: 130%;
     }
 
     #stake {
